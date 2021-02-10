@@ -51,11 +51,94 @@
             transition: 0.3s all ease-in;
         }
         </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA==" crossorigin="anonymous"></script>
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
         <script>
             function toggleLightMode() {
-            var element = document.body;
-            element.classList.toggle("light-mode");
+                var element = document.body;
+                element.classList.toggle("light-mode");
+            }
+
+            function trim(s) { return (s.charAt(0) == '#') ? s.substring(1, 7) : s }
+
+            function convertToHex(rgb) {
+                return hex(rgb[0]) + hex(rgb[1]) + hex(rgb[2]);
+            }
+
+            function convertToRGB(hex) {
+                var color = [];
+                color[0] = parseInt ((trim(hex)).substring (0, 2), 16);
+                color[1] = parseInt ((trim(hex)).substring (2, 4), 16);
+                color[2] = parseInt ((trim(hex)).substring (4, 6), 16);
+                return color;
+            }
+
+            function resolveNick() {
+                const applyText = (canvas, text) => {
+	    const ctx = canvas.getContext('2d');
+
+	let fontSize = 70;
+
+	do {
+        ctx.font = `${fontSize -= 10}px Minecraft`;
+        
+    } while (ctx.measureText(text).width > canvas.width);
+
+	return ctx.font;
+};
+        
+            let text = document.getElementById("text").value || "Text";
+            const from = document.getElementById("color1").value || "#771177";
+            const to = document.getElementById("color2").value || "#7a0000";
+            const bold = document.getElementById("bold").checked || false;
+            const italic = document.getElementById("italic").checked || false;
+            const underlined = document.getElementById("underlined").checked || false;
+            const strikethrough = document.getElementById("strikethrough").checked || false;
+            const obfuscated = document.getElementById("obfuscated").checked || false;
+            let join = "&#38;";
+            if (bold) join = "&#38;l" + join;
+            if (italic) join = "&#38;o" + join;
+            if (underlined) join = "&#38;n" + join;
+            if (strikethrough) join = "&#38;m" + join;
+            if (obfuscated) join = "&#38;k" + join;
+
+        const canvas = document.getElementById("nick");
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+        ctx.strokeStyle = '#771177';
+        ctx.strokeRect(0, 0, canvas.width - 1, canvas.height - 1);
+      
+        ctx.font = applyText(canvas, text);
+
+    let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0, from);
+    gradient.addColorStop(1, to);
+
+    ctx.fillStyle = gradient;
+    ctx.textAlign = "center";
+    ctx.shadowColor = "black";
+                ctx.shadowBlur = 0;
+                ctx.shadowOffsetX = 7;
+                ctx.shadowOffsetY = 7;
+    ctx.fillText(text, canvas.width / 2, canvas.height / 1.7);
+        
+        let scale = chroma.scale([from, to]);
+        let length = parseInt(text.split("").length);
+        let obj = [];
+
+        for (let i = 1; i < length + 1; i++) {
+            let ts = 1 / length * i;
+            obj.push(scale(ts).hex());
         }
+            let nickCmd = [];
+
+            for (let x = 0; x < length; x++) { nickCmd.push(join + obj[x] + text.charAt(x)); }
+            document.getElementById("cmd").innerHTML = nickCmd.join("");
+            }
+
+
         </script>
     </head>
     <body>
@@ -65,6 +148,25 @@
             <li><a href="#">Gradient Nickname Generator</a></li>
             <li><a onclick="toggleLightMode()">Toggle light mode</a></li>
           </ul>
-        <h1>Coming soon.</h1>
+          
+        <label>Text</label><br>
+        <input id="text" type="text" placeholder="Text"><br><br>
+        <label>First color</label><br>
+        <input id="color1" type="color" value="#771177"><br><br>
+        <label>Last color</label><br>
+        <input id="color2" type="color" value="#710000"><br><br>
+        <input type="checkbox" id="bold">
+        <label for="obfuscated"><b>bold</b></label><br>
+        <input type="checkbox" id="italic">
+        <label for="obfuscated"><i>italic</i></label><br>
+        <input type="checkbox" id="underlined">
+        <label for="obfuscated"><u>underlined</u></label><br>
+        <input type="checkbox" id="strikethrough">
+        <label for="obfuscated"><s>strikethrough</s></label><br>
+        <input type="checkbox" id="obfuscated">
+        <label for="obfuscated">obfuscated</label><br><br>
+        <button onclick="resolveNick()">Generate Nick Command</button>
+        <p id="cmd"></p>
+        <canvas id="nick"></canvas>
     </body>
 </html>
