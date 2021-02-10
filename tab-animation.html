@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>TAB Animated Gradient Generator</title>
         <style type="text/css">
-       code {
-  font-family: monospace;
-  color: crimson;
-  background-color: #f1f1f1;
-  padding: 2px;
-  font-size: 105%;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        body {
+            background-color: #8f8f8f;
+        }
+        * {
+            font-family: 'Poppins', Helvetica, arial, sans-serif;
+        }
+        code {
+            font-family: 'consolas';
+            background-color: #5f5f5f;
+        }
         </style>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script type="text/javascript">
         function trim(s) { return (s.charAt(0) == '#') ? s.substring(1, 7) : s }
 
@@ -29,10 +36,12 @@
           }
 
           function createYaml() {   
-            const name = document.getElementById("animation-name").value;
-            const text = document.getElementById("text").value;
-            const from = document.getElementById("color1").value;
-            const to = document.getElementById("color2").value;
+            const name = document.getElementById("animation-name").value || "name";
+            const text = document.getElementById("text").value || "Text";
+            const from = document.getElementById("color1").value || "#771177";
+            const to = document.getElementById("color2").value || "#7a0000";
+            const changeInterval = document.getElementById("changeInterval").value || "100";
+            const placeholder = "%animation:" + name + "%"
 
             let scale = chroma.scale([from, to]);
         let length = parseInt(text.split("").length);
@@ -47,7 +56,7 @@
             for (let x = 0; x < length; x++) { nickCmd.push(obj[x] + text.charAt(x)); }
 
                 let h = 0;
-                let desc = "  name:<br>    change-interval: 100<br>    texts:<br>        ";
+                let desc = "  name:<br>    change-interval: " + changeInterval + "<br>    texts:<br>        ";
                 desc += ("- \"{" + from + ">}" + text + "{" + obj[0] + "<}\"<br>");
                 for (let i = 1; i<length; i++) {
                     h = i - 1;
@@ -64,16 +73,35 @@
                     desc += ("        - \"{" + obj[i] + ">}" + text + "{" + obj[h] + "<}\"<br>");
                 }
                 document.getElementById("code").innerHTML = desc;
+                document.getElementById("placeholder").innerHTML = placeholder;
+                hljs.highlightBlock(document.getElementById("code"))
+                hljs.highlightBlock(document.getElementById("placeholder"))
     }
 
         </script>
     </head>
     <body>
-        <input id="animation-name" type="text" placeholder="Animation name" value="" onkeyup="this.value = this.value.toLowerCase().replace(/[^a-z0-9_-]/g, '');"><br>
-        <input id="text" type="text" placeholder="Text"><br>
-        <input id="color1" type="color" value="#771177"><br>
-        <input id="color2" type="color" value="#710000"><br>
-        <button id="create" onclick="createYaml()">Generate YAML</button><br><br>
-        <code type="yaml" id="code">import io.reliances.*;</code>
+        <center>
+            <h1>TAB Animated Gradient Generator</h1>
+            <h2>by <a href="https://github.com/starve-l">reliances</a></h2>
+        <label>Animation name</label><br>
+        <input id="animation-name" type="text" placeholder="Animation name" value="" onkeyup="this.value = this.value.toLowerCase().replace(/[^a-z0-9_-]/g, '');"><br><br>
+        <label>Text</label><br>
+        <input id="text" type="text" placeholder="Text"><br><br>
+        <label>Change Interval in ms</label><br>
+        <input id="changeInterval" type="number" placeholder="100"><br><br>
+        <label>First color</label><br>
+        <input id="color1" type="color" value="#771177"><br><br>
+        <label>Last color</label><br>
+        <input id="color2" type="color" value="#710000"><br><br>
+        <button id="create" onclick="createYaml()" lang="yaml">Generate YAML</button><br><br><br><br><br><br><br><br><br><br>
+
+    </center>
+    <div style="padding:2cm; align-items:left;">
+        <label>Paste this in your <code>animations.yml</code> file:</label><br>
+        <code class="language-yaml" id="code" style="align-content: left"></code><br>
+        <label>Use this as a placeholder:</label><br>
+        <code class="language-yaml" id="placeholder" style="align-content: left"></code>
+    </div>
     </body>
 </html>
