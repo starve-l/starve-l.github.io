@@ -64,10 +64,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script type="text/javascript">
 
-function toggleLightMode() {
-        var element = document.body;
-        element.classList.toggle("light-mode");
-}
+        function toggleLightMode() {
+            var element = document.body;
+            element.classList.toggle("light-mode");
+        }
 
         function trim(s) { return (s.charAt(0) == '#') ? s.substring(1, 7) : s }
 
@@ -83,7 +83,7 @@ function toggleLightMode() {
             return color;
           }
 
-function createYaml() {   
+        function createYaml() {   
             const name = document.getElementById("animation-name").value || "name";
             let text = document.getElementById("text").value || "Text";
             const from = document.getElementById("color1").value || "#771177";
@@ -141,10 +141,15 @@ function createYaml() {
         </script>
     </head>
     <body>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="#">Tab Animated Gradient Generator</a></li>
+            <li><a href="./rgb-nicknames.html">Gradient Nickname Generator</a></li>
+            <li><a onclick="toggleLightMode()">Toggle light mode</a></li>
+          </ul>
         <center>
             <h1>TAB Animated Gradient Generator</h1>
             <h2>by <a href="https://github.com/starve-l">reliances</a></h2>
-            <br><br><button onclick="toggleLightMode()">Toggle Light Mode</button><br><br>
         <label>Animation name</label><br>
         <input id="animation-name" type="text" placeholder="Animation name" value="" onkeyup="this.value = this.value.toLowerCase().replace(' ', '-').replace(/[^a-z0-9_-]/g, '');"><br><br>
         <label>Text</label><br>
