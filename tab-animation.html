@@ -57,11 +57,22 @@ function toggleLightMode() {
 
 function createYaml() {   
             const name = document.getElementById("animation-name").value || "name";
-            const text = document.getElementById("text").value || "Text";
+            let text = document.getElementById("text").value || "Text";
             const from = document.getElementById("color1").value || "#771177";
             const to = document.getElementById("color2").value || "#7a0000";
             const changeInterval = document.getElementById("changeInterval").value || "100";
             const placeholder = "%animation:" + name + "%"
+            const bold = document.getElementById("bold").checked || false;
+            const italic = document.getElementById("italic").checked || false;
+            const underlined = document.getElementById("underlined").checked || false;
+            const strikethrough = document.getElementById("strikethrough").checked || false;
+            const obfuscated = document.getElementById("obfuscated").checked || false;
+
+            if (bold) text = "&l" + text;
+            if (italic) text = "&o" + text;
+            if (underlined) text = "&n" + text;
+            if (strikethrough) text = "&m" + text;
+            if (obfuscated) text = "&k" + text;
 
             let scale = chroma.scale([from, to]);
         let length = parseInt(text.split("").length);
@@ -116,9 +127,18 @@ function createYaml() {
         <input id="color1" type="color" value="#771177"><br><br>
         <label>Last color</label><br>
         <input id="color2" type="color" value="#710000"><br><br>
+        <input type="checkbox" id="bold">
+        <label for="obfuscated"><b>bold</b></label><br>
+        <input type="checkbox" id="italic">
+        <label for="obfuscated"><i>italic</i></label><br>
+        <input type="checkbox" id="underlined">
+        <label for="obfuscated"><u>underlined</u></label><br>
+        <input type="checkbox" id="strikethrough">
+        <label for="obfuscated"><s>strikethrough</s></label><br>
+        <input type="checkbox" id="obfuscated">
+        <label for="obfuscated">obfuscated</label><br><br>
+
         <button id="create" onclick="createYaml()" lang="yaml">Generate YAML</button><br><br><br><br><br><br><br><br><br><br>
-
-
 
     </center>
     <div style="padding:2cm; align-items:left;">
