@@ -56,21 +56,21 @@
             for (let x = 0; x < length; x++) { nickCmd.push(obj[x] + text.charAt(x)); }
 
                 let h = 0;
-                let desc = "  name:<br>    change-interval: " + changeInterval + "<br>    texts:<br>        ";
-                desc += ("- \"{" + from + ">}" + text + "{" + obj[0] + "<}\"<br>");
+                let desc = "&nbsp;&nbsp;name:<br>&nbsp;&nbsp;&nbsp;&nbsp;change-interval: " + changeInterval + "<br>&nbsp;&nbsp;&nbsp;&nbsp;texts:<br>        ";
+                desc += ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- \"{" + from + ">}" + text + "{" + obj[0] + "<}\"<br>");
                 for (let i = 1; i<length; i++) {
                     h = i - 1;
-                    desc += ("        - \"{" + obj[h] + ">}" + text + "{" + obj[i] + "<}\"<br>");
+                    desc += ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- \"{" + obj[h] + ">}" + text + "{" + obj[i] + "<}\"<br>");
                 }
                 h = 0;
                 j = 0;
                 for (var i = length - 1; i >= 0; i--) {
                     if (i == 0) {
-                    desc += ("        - \"{" + obj[i] + ">}" + text + "{" + from + "<}\"<br>");
+                    desc += ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- \"{" + obj[i] + ">}" + text + "{" + from + "<}\"<br>");
                     continue;
                     }
                     h = i - 1;
-                    desc += ("        - \"{" + obj[i] + ">}" + text + "{" + obj[h] + "<}\"<br>");
+                    desc += ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- \"{" + obj[i] + ">}" + text + "{" + obj[h] + "<}\"<br>");
                 }
                 document.getElementById("code").innerHTML = desc;
                 document.getElementById("placeholder").innerHTML = placeholder;
