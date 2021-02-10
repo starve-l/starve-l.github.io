@@ -107,7 +107,7 @@ function createYaml() {
             <h2>by <a href="https://github.com/starve-l">reliances</a></h2>
             <br><br><button onclick="toggleLightMode()">Toggle Light Mode</button><br><br>
         <label>Animation name</label><br>
-        <input id="animation-name" type="text" placeholder="Animation name" value="" onkeyup="this.value = this.value.toLowerCase().replace(/[^a-z0-9_-]/g, '');"><br><br>
+        <input id="animation-name" type="text" placeholder="Animation name" value="" onkeyup="this.value = this.value.toLowerCase().replace(' ', '-').replace(/[^a-z0-9_-]/g, '');"><br><br>
         <label>Text</label><br>
         <input id="text" type="text" placeholder="Text"><br><br>
         <label>Change Interval in ms</label><br>
