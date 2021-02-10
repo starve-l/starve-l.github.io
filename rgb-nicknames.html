@@ -96,7 +96,7 @@
             const underlined = document.getElementById("underlined").checked || false;
             const strikethrough = document.getElementById("strikethrough").checked || false;
             const obfuscated = document.getElementById("obfuscated").checked || false;
-            let join = "&#38;";
+            let join = "";
             if (bold) join = "&#38;l" + join;
             if (italic) join = "&#38;o" + join;
             if (underlined) join = "&#38;n" + join;
@@ -134,7 +134,7 @@
         }
             let nickCmd = [];
 
-            for (let x = 0; x < length; x++) { nickCmd.push(join + obj[x] + text.charAt(x)); }
+            for (let x = 0; x < length; x++) { nickCmd.push("&#38;" + obj[x] + join + text.charAt(x)); }
             document.getElementById("cmd").innerHTML = nickCmd.join("");
             }
 
