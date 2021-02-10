@@ -117,7 +117,7 @@
             for (let x = 0; x < length; x++) { nickCmd.push(obj[x] + text.charAt(x)); }
 
                 let h = 0;
-                let desc = "&nbsp;&nbsp;name:<br>&nbsp;&nbsp;&nbsp;&nbsp;change-interval: " + changeInterval + "<br>&nbsp;&nbsp;&nbsp;&nbsp;texts:<br>        ";
+                let desc = "&nbsp;&nbsp;" + name + ":<br>&nbsp;&nbsp;&nbsp;&nbsp;change-interval: " + changeInterval + "<br>&nbsp;&nbsp;&nbsp;&nbsp;texts:<br>        ";
                 desc += ("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- \"{" + from + ">}" + text + "{" + obj[0] + "<}\"<br>");
                 for (let i = 1; i<length; i++) {
                     h = i - 1;
@@ -152,24 +152,24 @@
         <center>
             <h1>TAB Animated Gradient Generator</h1>
             <h2>by <a href="https://github.com/starve-l">reliances</a></h2>
-        <label>Animation name</label><br>
+        <label for="animation-name">Animation name</label><br>
         <input id="animation-name" type="text" placeholder="Animation name" value="" onkeyup="this.value = this.value.toLowerCase().replace(' ', '-').replace(/[^a-z0-9_-]/g, '');"><br><br>
-        <label>Text</label><br>
+        <label for="text">Text</label><br>
         <input id="text" type="text" placeholder="Text"><br><br>
-        <label>Change Interval in ms</label><br>
+        <label for="changeInterval">Change Interval in ms</label><br>
         <input id="changeInterval" type="number" placeholder="100"><br><br>
-        <label>First color</label><br>
+        <label for="color1">First color</label><br>
         <input id="color1" type="color" value="#771177"><br><br>
-        <label>Last color</label><br>
+        <label for="color2">Last color</label><br>
         <input id="color2" type="color" value="#710000"><br><br>
         <input type="checkbox" id="bold">
-        <label for="obfuscated"><b>bold</b></label><br>
+        <label for="bold"><b>bold</b></label><br>
         <input type="checkbox" id="italic">
-        <label for="obfuscated"><i>italic</i></label><br>
+        <label for="italic"><i>italic</i></label><br>
         <input type="checkbox" id="underlined">
-        <label for="obfuscated"><u>underlined</u></label><br>
+        <label for="underlined"><u>underlined</u></label><br>
         <input type="checkbox" id="strikethrough">
-        <label for="obfuscated"><s>strikethrough</s></label><br>
+        <label for="strikethrough"><s>strikethrough</s></label><br>
         <input type="checkbox" id="obfuscated">
         <label for="obfuscated">obfuscated</label><br><br>
 
@@ -177,9 +177,9 @@
 
     </center>
     <div style="padding:2cm; align-items:left;">
-        <label>Paste this in your <code>animations.yml</code> file:</label><br>
+        <label for="code">Paste this in your <code>animations.yml</code> file:</label><br>
         <code class="language-yaml" id="code" style="align-content: left"></code><br>
-        <label>Use this as a placeholder:</label><br>
+        <label for="placeholder">Use this as a placeholder:</label><br>
         <code class="language-yaml" class="style-atom-one-dark" id="placeholder" style="align-content: left"></code>
     </div>
     </body>
