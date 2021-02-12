@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="./default.css">
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         :root {
@@ -59,6 +60,7 @@
                 element.classList.toggle("light-mode");
             }
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     </head>
     <body>
         <ul>
@@ -70,6 +72,17 @@
           </ul>
           <center>
               <h1>rRename</h1><br>
+              <p>rRename is a plugin that allows you to rename items. It also allows you to use hexadecimal color codes (e. g. #7a0000). It's highly customizable. Example config: <br>
+                <code class="language-yaml" class="style-atom-one-dark" id="placeholder" style="align-content: left">version: 1.0.0
+                    appearance:
+                      prefix: rRename
+                      prefix-color: 771177
+                      color-normal: FB336D
+                      color-error: 7a0000
+                    economy:
+                      #When enabled, rRename removes a specific amount of money from the players balance when renaming an item.
+                      enabled: false
+                      price: 50</code></p>
     </center>
     </body>
 </html>
