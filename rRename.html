@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="./default.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         :root {
@@ -59,8 +60,10 @@
                 var element = document.body;
                 element.classList.toggle("light-mode");
             }
+            document.onload = function() {
+                hljs.highlightBlock(document.getElementById("code"));
+            }
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     </head>
     <body>
         <ul>
@@ -71,9 +74,9 @@
             <li><a onclick="toggleLightMode()">Toggle light mode</a></li>
           </ul>
           <center>
-              <h1>rRename</h1><br>
-              <p>rRename is a plugin that allows you to rename items. It also allows you to use hexadecimal color codes (e. g. #7a0000). It's highly customizable. Example config: <br>
-                <code class="language-yaml" class="style-atom-one-dark" id="placeholder" style="align-content: left">version: 1.0.0
+              <h1><a href="https://github.com/starve-l/rRename">rRename</a></h1><br>
+              <p>rRename is a plugin that allows you to rename items. It also allows you to use hexadecimal color codes (e. g. #7a0000). It's highly customizable. Example config: <br></p>
+                <code class="language-yaml" class="style-atom-one-dark" id="code" style="align-content: left">version: 1.0.0
                     appearance:
                       prefix: rRename
                       prefix-color: 771177
@@ -82,7 +85,10 @@
                     economy:
                       #When enabled, rRename removes a specific amount of money from the players balance when renaming an item.
                       enabled: false
-                      price: 50</code></p>
+                      price: 50</code><br><br>
+                      <h3>Links</h3>
+                      <p><a href="https://www.spigotmc.org/resources/rrename.88942/">SpigotMC page</a></p><br>
+                      <p><a href="https://github.com/starve-l/rRename">GitHub Repository</a></p>
     </center>
     </body>
 </html>
