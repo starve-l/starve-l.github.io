@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        :root {
+            --primary-color: #9A97F3;
+            --secondary-color: #818cab;
+            --font-color: #e1e1ff;
+            --bg-color: #161625;
+            --heading-color: #818cab;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--font-color);
+            transition: 0.3s all ease-in;
+            padding: 25px;
+        }
+        .light-mode {
+            background-color: white;
+            color: black;
+            transition: 0.3s all ease-in;
+        }
+        * {
+            font-family: 'Poppins', Helvetica, arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #dddddd;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: 0.3s all ease-in;
+        }
+        li a:hover {
+            background-color: #111;
+            transition: 0.3s all ease-in;
+        }
+        </style>
+        <script>
+            function toggleLightMode() {
+                var element = document.body;
+                element.classList.toggle("light-mode");
+            }
+        </script>
+    </head>
+<body>
+    <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./tab-animation.html">Tab Animated Gradient Generator</a></li>
+        <li><a href="./gradient-text.html">Gradient Text Generator</a></li>
+        <li><a href="./cosmonaut.html">Cosmonaut</a></li>
+        <li><a href="./projects.html">Projects</a></li>
+        <li><a onclick="toggleLightMode()">Toggle light mode</a></li>
+      </ul>
+</body>
+</html>
